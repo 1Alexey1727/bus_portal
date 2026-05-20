@@ -5,37 +5,36 @@
     
     <form method="post">
         {% csrf_token %}
+        
         <div class="form-field">
             <label>Наименование курса</label>
-            <select name="course" class="form-input" required>
-                <option value="">Выберите курс</option>
-                <option value="Автобус">Автобус (категория D)</option>
-                <option value="Электробус">Электробус</option>
-                <option value="Трамвай">Трамвай</option>
-            </select>
+            {{ form.course_name }}
+            {% if form.course_name.errors %}
+                <div class="error-message">{{ form.course_name.errors.0 }}</div>
+            {% endif %}
         </div>
         
         <div class="form-field">
             <label>Желаемая дата начала обучения</label>
-            <input type="date" name="start_date" class="form-input" required>
+            {{ form.start_date }}
+            {% if form.start_date.errors %}
+                <div class="error-message">{{ form.start_date.errors.0 }}</div>
+            {% endif %}
         </div>
         
         <div class="form-field">
             <label>Способ оплаты</label>
-            <select name="payment" class="form-input" required>
-                <option value="">Выберите способ</option>
-                <option value="cash">Наличными</option>
-                <option value="transfer">Перевод по номеру телефона</option>
-            </select>
+            {{ form.payment_method }}
+            {% if form.payment_method.errors %}
+                <div class="error-message">{{ form.payment_method.errors.0 }}</div>
+            {% endif %}
         </div>
         
-        <div class="form-field" style="margin-top: 25px;">
-            <button type="submit" class="submit-button">Отправить заявку</button>
-        </div>
+        <button type="submit" class="submit-button">Отправить заявку</button>
     </form>
     
-    <div style="background: #f0f9ff; padding: 15px; border-radius: 8px; margin-top: 20px; border-left: 3px solid #3498db;">
-        <p style="font-size: 14px; color: #2c3e50;">После отправки заявка будет рассмотрена администратором</p>
+    <div class="info-block">
+        <p>После отправки заявка будет рассмотрена администратором. Статус заявки можно отслеживать в разделе "Мои заявки".</p>
     </div>
 </div>
 {% endblock %}

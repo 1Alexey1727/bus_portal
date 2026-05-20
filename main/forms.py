@@ -1,7 +1,7 @@
 import re
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import User
+from .models import User, Application
 
 class RegisterForm(UserCreationForm):
     full_name = forms.CharField(max_length=255, label='ФИО')
@@ -37,3 +37,18 @@ class RegisterForm(UserCreationForm):
         if User.objects.filter(email=email).exists():
             raise forms.ValidationError('Пользователь с таким email уже существует')
         return email
+    
+class ApplicationForm(forms.ModelForm):
+    class Meta:
+        model = Application
+        fields = ['course_name', 'start_date', 'payment_method']
+        widgets = {
+            'start_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-input'}),
+            'course_name': forms.Select(attrs={'class': 'form-input'}),
+            'payment_method': forms.Select(attrs={'class': 'form-input'}),
+        }
+        labels = {
+            'course_name': 'Наименование курса',
+            'start_date': 'Дата начала обучения',
+            'payment_method': 'Способ оплаты',
+        }

@@ -2,9 +2,34 @@
 {% block content %}
 <div class="applications-container">
     <h2 class="page-title">Мои заявки на обучение</h2>
-    <div style="text-align: center; padding: 40px; background: #f8fafc; border-radius: 16px;">
-        <p style="color: #64748b; font-size: 16px;">У вас пока нет заявок</p>
-        <a href="{% url 'create_application' %}" class="action-button" style="margin-top: 20px; display: inline-block;">Создать заявку</a>
-    </div>
+    
+    {% if messages %}
+        {% for message in messages %}
+            <div class="success-message">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    
+    {% if applications %}
+        <div class="applications-list">
+            {% for app in applications %}
+            <div class="application-card">
+                <div class="application-header">
+                    <span class="application-course">{{ app.get_course_name_display }}</span>
+                    <span class="application-status status-{{ app.status }}">{{ app.get_status_display }}</span>
+                </div>
+                <div class="application-details">
+                    <p><strong>Дата начала:</strong> {{ app.start_date|date:"d.m.Y" }}</p>
+                    <p><strong>Способ оплаты:</strong> {{ app.get_payment_method_display }}</p>
+                    <p><strong>Дата создания:</strong> {{ app.created_at|date:"d.m.Y H:i" }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="empty-state">
+            <p>У вас пока нет заявок</p>
+            <a href="{% url 'create_application' %}" class="action-button">Создать заявку</a>
+        </div>
+    {% endif %}
 </div>
 {% endblock %}
