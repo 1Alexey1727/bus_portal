@@ -1,7 +1,7 @@
 import re
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import User, Application
+from .models import User, Application, Review
 
 class RegisterForm(UserCreationForm):
     full_name = forms.CharField(max_length=255, label='ФИО')
@@ -37,7 +37,7 @@ class RegisterForm(UserCreationForm):
         if User.objects.filter(email=email).exists():
             raise forms.ValidationError('Пользователь с таким email уже существует')
         return email
-    
+
 class ApplicationForm(forms.ModelForm):
     class Meta:
         model = Application
@@ -47,8 +47,17 @@ class ApplicationForm(forms.ModelForm):
             'course_name': forms.Select(attrs={'class': 'form-input'}),
             'payment_method': forms.Select(attrs={'class': 'form-input'}),
         }
+
+# Новая форма отзыва
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = ['rating', 'text']
+        widgets = {
+            'text': forms.Textarea(attrs={'class': 'form-input', 'rows': 4, 'placeholder': 'Напишите ваш отзыв о курсе...'}),
+            'rating': forms.Select(attrs={'class': 'form-input'}),
+        }
         labels = {
-            'course_name': 'Наименование курса',
-            'start_date': 'Дата начала обучения',
-            'payment_method': 'Способ оплаты',
+            'rating': 'Оценка',
+            'text': 'Текст отзыва',
         }

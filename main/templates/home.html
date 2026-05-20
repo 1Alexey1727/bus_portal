@@ -4,7 +4,84 @@
     <h1 class="welcome-title">Добро пожаловать на портал обучения вождению</h1>
     <p class="welcome-subtitle">Обучение вождению автобусов, электробусов и трамваев</p>
 </div>
+<!-- Слайдер -->
+<div class="slider-block">
+    <div class="slider-container">
+        <button class="slider-arrow slider-prev" id="prevBtn">❮</button>
+        <div class="slider-track">
+            <img class="slider-slide active" src="/static/img/slide1.jpg" alt="Автобус">
+            <img class="slider-slide" src="/static/img/slide2.jpg" alt="Электробус">
+            <img class="slider-slide" src="/static/img/slide3.jpg" alt="Трамвай">
+            <img class="slider-slide" src="/static/img/slide4.jpg" alt="Вождение">
+        </div>
+        <button class="slider-arrow slider-next" id="nextBtn">❯</button>
+    </div>
+    <div class="slider-dots" id="dotsContainer"></div>
+</div>
 
+<script>
+    const slides = document.querySelectorAll('.slider-slide');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const dotsContainer = document.getElementById('dotsContainer');
+    let currentSlide = 0;
+    let slideInterval;
+
+    // Создание точек навигации
+    function createDots() {
+        slides.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(index));
+            dotsContainer.appendChild(dot);
+        });
+    }
+
+    // Обновление активного слайда
+    function updateSlides() {
+        slides.forEach((slide, index) => {
+            slide.classList.remove('active');
+            if (index === currentSlide) slide.classList.add('active');
+        });
+        
+        document.querySelectorAll('.dot').forEach((dot, index) => {
+            dot.classList.remove('active');
+            if (index === currentSlide) dot.classList.add('active');
+        });
+    }
+
+    // Переключение на конкретный слайд
+    function goToSlide(index) {
+        currentSlide = (index + slides.length) % slides.length;
+        updateSlides();
+        resetInterval();
+    }
+
+    // Следующий слайд
+    function nextSlide() {
+        goToSlide(currentSlide + 1);
+    }
+
+    // Предыдущий слайд
+    function prevSlide() {
+        goToSlide(currentSlide - 1);
+    }
+
+    // Сброс таймера
+    function resetInterval() {
+        clearInterval(slideInterval);
+        slideInterval = setInterval(nextSlide, 3000);
+    }
+
+    // События кнопок
+    prevBtn.addEventListener('click', prevSlide);
+    nextBtn.addEventListener('click', nextSlide);
+
+    // Запуск слайдера
+    createDots();
+    slideInterval = setInterval(nextSlide, 3000);
+</script>
 <div class="courses-section">
     <div class="course-card">
         <h3 class="course-title">Автобус</h3>

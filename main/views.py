@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import RegisterForm, ApplicationForm
-from .models import Application
+from .forms import RegisterForm, ApplicationForm, ReviewForm
+from .models import Application, Review
 
 def register_view(request):
     if request.method == 'POST':
@@ -53,3 +53,32 @@ def create_application_view(request):
     else:
         form = ApplicationForm()
     return render(request, 'create_application.html', {'form': form})
+
+# Новый view для создания отзыва
+@login_required
+def create_review_view(request, application_id):
+    application = get_object_or_404(Application, id=application_id, user=request.user)
+    
+    # Проверка: можно оставить отзыв только если обучение завершено
+    if application.status != 'completed':
+        messages.error(request, 'Отзыв можно оставить только после завершения обучения')
+        return redirect('applications')
+    
+    # Проверка: отзыв уже есть
+    if hasattr(application, 'review'):
+        messages.error(request, 'Вы уже оставили отзыв на эту заявку')
+        return redirect('applications')
+    
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.user = request.user
+            review.application = application
+            review.save()
+            messages.success(request, 'Спасибо за ваш отзыв!')
+            return redirect('applications')
+    else:
+        form = ReviewForm()
+    
+    return render(request, 'create_review.html', {'form': form, 'application': application})

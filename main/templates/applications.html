@@ -22,6 +22,18 @@
                     <p><strong>Способ оплаты:</strong> {{ app.get_payment_method_display }}</p>
                     <p><strong>Дата создания:</strong> {{ app.created_at|date:"d.m.Y H:i" }}</p>
                 </div>
+                
+                <!-- Кнопка отзыва (только если статус completed и отзыва еще нет) -->
+                {% if app.status == 'completed' and not app.review %}
+                <div class="review-button-block">
+                    <a href="{% url 'create_review' app.id %}" class="review-button">Оставить отзыв</a>
+                </div>
+                {% elif app.review %}
+                <div class="review-info">
+                    <p><strong>Ваш отзыв:</strong> {{ app.review.text|truncatechars:100 }}</p>
+                    <p><strong>Оценка:</strong> {{ app.review.rating }}/5</p>
+                </div>
+                {% endif %}
             </div>
             {% endfor %}
         </div>
