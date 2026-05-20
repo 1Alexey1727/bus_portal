@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="login-form">
+    <h2 class="page-title">Авторизация пользователя</h2>
+    
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-field">
+            <label>Логин</label>
+            <input type="text" name="username" class="form-input" required>
+        </div>
+        <div class="form-field">
+            <label>Пароль</label>
+            <input type="password" name="password" class="form-input" required>
+        </div>
+        {% if error %}
+            <div class="error-message">{{ error }}</div>
+        {% endif %}
+        <button type="submit" class="submit-button">Войти в систему</button>
+    </form>
+    
+    <a href="{% url 'register' %}" class="auth-switch-link">Еще не зарегистрированы? Создать аккаунт</a>
+</div>
+{% endblock %}

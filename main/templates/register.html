@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="registration-form">
+    <h2 class="page-title">Регистрация нового пользователя</h2>
+    
+    <form method="post">
+        {% csrf_token %}
+        
+        <div class="form-field">
+            <label>Логин (латиница+цифры, мин 6)</label>
+            <input type="text" name="username" class="form-input {% if form.username.errors %}error{% endif %}" value="{{ form.username.value|default:'' }}" required>
+            {% if form.username.errors %}
+                <div class="error-message">{{ form.username.errors.0 }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="form-field">
+            <label>Пароль (мин 8 символов)</label>
+            <input type="password" name="password1" class="form-input {% if form.password1.errors %}error{% endif %}" required>
+            {% if form.password1.errors %}
+                <div class="error-message">{{ form.password1.errors.0 }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="form-field">
+            <label>Подтверждение пароля</label>
+            <input type="password" name="password2" class="form-input {% if form.password2.errors %}error{% endif %}" required>
+            {% if form.password2.errors %}
+                <div class="error-message">{{ form.password2.errors.0 }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="form-field">
+            <label>ФИО (только кириллица)</label>
+            <input type="text" name="full_name" class="form-input {% if form.full_name.errors %}error{% endif %}" value="{{ form.full_name.value|default:'' }}" required>
+            {% if form.full_name.errors %}
+                <div class="error-message">{{ form.full_name.errors.0 }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="form-field">
+            <label>Телефон 8(XXX)XXX-XX-XX</label>
+            <input type="text" name="phone" class="form-input {% if form.phone.errors %}error{% endif %}" value="{{ form.phone.value|default:'' }}" required>
+            {% if form.phone.errors %}
+                <div class="error-message">{{ form.phone.errors.0 }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="form-field">
+            <label>Email</label>
+            <input type="email" name="email" class="form-input {% if form.email.errors %}error{% endif %}" value="{{ form.email.value|default:'' }}" required>
+            {% if form.email.errors %}
+                <div class="error-message">{{ form.email.errors.0 }}</div>
+            {% endif %}
+        </div>
+        
+        <button type="submit" class="submit-button">Зарегистрироваться</button>
+    </form>
+    
+    <a href="{% url 'login' %}" class="auth-switch-link">Уже есть аккаунт? Войти в систему</a>
+</div>
+{% endblock %}

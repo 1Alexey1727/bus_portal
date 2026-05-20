@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="welcome-section">
+    <h1 class="welcome-title">Добро пожаловать на портал обучения вождению</h1>
+    <p class="welcome-subtitle">Обучение вождению автобусов, электробусов и трамваев</p>
+</div>
+
+<div class="courses-section">
+    <div class="course-card">
+        <h3 class="course-title">Автобус</h3>
+        <p class="course-description">Профессиональное обучение управлению автобусом категории "D". Теория и практика с опытными инструкторами.</p>
+    </div>
+    
+    <div class="course-card">
+        <h3 class="course-title">Электробус</h3>
+        <p class="course-description">Современный курс по управлению электробусом. Экологические стандарты и экономия топлива.</p>
+    </div>
+    
+    <div class="course-card">
+        <h3 class="course-title">Трамвай</h3>
+        <p class="course-description">Обучение вождению трамвая. Полный курс ПДД и практические занятия на маршрутах.</p>
+    </div>
+</div>
+
+<div class="action-buttons">
+    {% if user.is_authenticated %}
+        <a href="{% url 'create_application' %}" class="action-button">Подать заявку на обучение</a>
+    {% else %}
+        <a href="{% url 'register' %}" class="action-button">Зарегистрироваться и начать обучение</a>
+    {% endif %}
+</div>
+{% endblock %}

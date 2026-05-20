@@ -1,0 +1,361 @@
+/* Основные стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    background: linear-gradient(135deg, #e8f0f8 0%, #d9e4f0 100%);
+    padding: 20px;
+    color: #2c3e50;
+    min-height: 100vh;
+}
+
+.portal-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Навигация */
+.main-navigation {
+    background: #2c3e50;
+    padding: 12px 20px;
+    margin-bottom: 32px;
+    border-radius: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.nav-link {
+    color: #ecf0f1;
+    text-decoration: none;
+    padding: 8px 18px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.nav-link:hover {
+    background: #34495e;
+    color: white;
+}
+
+.logout-link {
+    background: #e74c3c;
+}
+
+.logout-link:hover {
+    background: #c0392b;
+}
+
+.register-link {
+    background: #27ae60;
+}
+
+.register-link:hover {
+    background: #219a52;
+}
+
+/* Формы */
+.registration-form,
+.login-form {
+    max-width: 450px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 16px 8px;
+}
+
+.form-field {
+    margin-bottom: 20px;
+}
+
+.form-field label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #34495e;
+    font-size: 14px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #dcdfe6;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: all 0.2s ease;
+    background: #fafbfc;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+    background: white;
+}
+
+.submit-button {
+    background: #3498db;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.submit-button:hover {
+    background: #2980b9;
+    transform: translateY(-1px);
+}
+
+.error-message {
+    color: #e74c3c;
+    background: #fdf0ef;
+    padding: 10px 12px;
+    margin-top: 8px;
+    border-radius: 8px;
+    font-size: 13px;
+    border-left: 3px solid #e74c3c;
+}
+
+.auth-switch-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: #3498db;
+    text-decoration: none;
+    text-align: center;
+    width: 100%;
+    font-size: 14px;
+}
+
+.auth-switch-link:hover {
+    text-decoration: underline;
+}
+
+.page-title {
+    margin-bottom: 28px;
+    color: #2c3e50;
+    text-align: center;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+/* Главная страница */
+.welcome-section {
+    text-align: center;
+    padding: 48px 24px;
+    background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+    border-radius: 16px;
+    color: white;
+    margin-bottom: 32px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-title {
+    font-size: 32px;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.welcome-subtitle {
+    font-size: 16px;
+    opacity: 0.9;
+}
+
+.courses-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin: 32px 0;
+}
+
+.course-card {
+    background: #f8fafc;
+    border-radius: 16px;
+    padding: 24px 20px;
+    text-align: center;
+    transition: all 0.2s ease;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.course-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    border-color: #cbd5e1;
+}
+
+.course-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #2c3e50;
+}
+
+.course-description {
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.action-buttons {
+    text-align: center;
+    margin-top: 24px;
+}
+
+.action-button {
+    display: inline-block;
+    background: #27ae60;
+    color: white;
+    padding: 14px 36px;
+    text-decoration: none;
+    border-radius: 40px;
+    transition: all 0.2s ease;
+    font-weight: 600;
+    font-size: 15px;
+    box-shadow: 0 2px 8px rgba(39, 174, 96, 0.2);
+}
+
+.action-button:hover {
+    background: #219a52;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+}
+
+/* Мобильная адаптация 480px */
+@media (max-width: 480px) {
+    body {
+        padding: 8px;
+    }
+    
+    .portal-container {
+        padding: 12px;
+        border-radius: 12px;
+    }
+    
+    .registration-form,
+    .login-form {
+        width: 100%;
+        max-width: 100%;
+        padding: 8px 0;
+    }
+    
+    .page-title {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .form-input {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+    
+    .submit-button {
+        padding: 10px;
+        font-size: 15px;
+    }
+    
+    .main-navigation {
+        flex-direction: column;
+        gap: 8px;
+        padding: 12px;
+    }
+    
+    .nav-link {
+        display: block;
+        text-align: center;
+        width: 100%;
+        padding: 8px 12px;
+    }
+    
+    .welcome-title {
+        font-size: 22px;
+    }
+    
+    .welcome-subtitle {
+        font-size: 13px;
+    }
+    
+    .courses-section {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .course-card {
+        padding: 18px 16px;
+    }
+    
+    .action-button {
+        display: block;
+        width: 100%;
+        padding: 12px 20px;
+        text-align: center;
+    }
+}
+
+/* Мобильная адаптация 320px */
+@media (max-width: 320px) {
+    .page-title {
+        font-size: 18px;
+    }
+    
+    .form-input {
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+    
+    .submit-button {
+        padding: 8px;
+        font-size: 14px;
+    }
+    
+    .welcome-title {
+        font-size: 20px;
+    }
+    
+    .welcome-subtitle {
+        font-size: 12px;
+    }
+    
+    .course-title {
+        font-size: 18px;
+    }
+    
+    .course-description {
+        font-size: 13px;
+    }
+}
+/* Подсветка полей с ошибками */
+.form-input.error {
+    border-color: #e74c3c;
+    background: #fff5f5;
+}
+
+.form-input.error:focus {
+    border-color: #e74c3c;
+    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+}
+/* Страница заявок */
+.applications-container {
+    margin-top: 20px;
+}
+
+/* Страница создания заявки */
+.application-form {
+    max-width: 500px;
+    margin: 0 auto;
+}

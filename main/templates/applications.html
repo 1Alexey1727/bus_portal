@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="applications-container">
+    <h2 class="page-title">Мои заявки на обучение</h2>
+    <div style="text-align: center; padding: 40px; background: #f8fafc; border-radius: 16px;">
+        <p style="color: #64748b; font-size: 16px;">У вас пока нет заявок</p>
+        <a href="{% url 'create_application' %}" class="action-button" style="margin-top: 20px; display: inline-block;">Создать заявку</a>
+    </div>
+</div>
+{% endblock %}

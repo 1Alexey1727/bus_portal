@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Портал обучения вождению</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="portal-container">
+        <div class="main-navigation">
+            <a href="{% url 'home' %}" class="nav-link">Главная</a>
+            
+            {% if user.is_authenticated %}
+                <a href="{% url 'applications' %}" class="nav-link">Мои заявки</a>
+                <a href="{% url 'create_application' %}" class="nav-link">Новая заявка</a>
+                <a href="{% url 'logout' %}" class="nav-link logout-link">Выход ({{ user.username }})</a>
+            {% else %}
+                <a href="{% url 'login' %}" class="nav-link">Вход</a>
+                <a href="{% url 'register' %}" class="nav-link register-link">Регистрация</a>
+            {% endif %}
+        </div>
+        
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
